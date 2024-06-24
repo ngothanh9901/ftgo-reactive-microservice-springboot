@@ -3,7 +3,8 @@ create table restaurant(
     name varchar(500)
 );
 create table menu_item(
-    id varchar(500) primary key,
+    id serial primary key,
+    code varchar(500),
     name varchar(500),
     price int8,
     restaurant_id serial
