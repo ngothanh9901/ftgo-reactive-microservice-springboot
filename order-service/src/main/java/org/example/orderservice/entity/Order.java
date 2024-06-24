@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.orderservice.entity.common.DeliveryInformation;
+import org.example.orderservice.entity.common.OrderLineItems;
 import org.example.orderservice.enums.OrderState;
 
 @Getter
@@ -16,4 +18,6 @@ public class Order {
     private OrderState state;
     private Long consumerId;
     private Long restaurantId;
+    private OrderLineItems orderLineItems;
+    private DeliveryInformation deliveryInformation;
 }
