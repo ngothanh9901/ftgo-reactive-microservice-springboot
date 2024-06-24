@@ -10,9 +10,11 @@
         <module name="order-service" />
         <module name="restaurant-service" />
         <module name="kitchen-service" />
-        <module name="consumer-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="consumer-service" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
