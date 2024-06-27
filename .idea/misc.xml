@@ -10,7 +10,13 @@
         <option value="$PROJECT_DIR$/restaurant-service/kitchen-service/pom.xml" />
         <option value="$PROJECT_DIR$/delivery-service/pom.xml" />
         <option value="$PROJECT_DIR$/kitchen-service/pom.xml" />
+        <option value="$PROJECT_DIR$/test-depency/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/test-depency/pom.xml" />
+      </set>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>

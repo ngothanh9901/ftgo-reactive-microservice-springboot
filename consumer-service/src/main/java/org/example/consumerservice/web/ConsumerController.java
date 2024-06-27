@@ -12,9 +12,12 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/consumer")
 public class ConsumerController {
-    private ConsumerService consumerService;
+    private final ConsumerService consumerService;
+    public ConsumerController(ConsumerService consumerService) {
+        this.consumerService = consumerService;
+    }
     @PostMapping
-    Mono<Consumer> create(@RequestBody Mono<CreateConsumerDto> createConsumerDto){
-        return consumerService.create(createConsumerDto);
+    Mono<Consumer> create(@RequestBody CreateConsumerDto createConsumerDto){
+        return consumerService.create(Mono.just(createConsumerDto));
     }
 }

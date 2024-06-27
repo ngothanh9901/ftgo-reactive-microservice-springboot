@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Consumer {
     private Long id;
+    private String identity;
     private String firstName;
     private String lastName;
 }
