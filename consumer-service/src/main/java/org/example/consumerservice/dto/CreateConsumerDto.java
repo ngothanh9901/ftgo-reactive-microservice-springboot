@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateConsumerDto {
     private String identity;
+    private String email;
     private String firstName;
     private String lastName;
 }
