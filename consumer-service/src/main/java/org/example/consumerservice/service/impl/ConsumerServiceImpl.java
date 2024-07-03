@@ -8,6 +8,7 @@ import org.example.consumerservice.service.ConsumerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
 @Service
 public class ConsumerServiceImpl implements ConsumerService {
     private final ConsumerRepository consumerRepository;
@@ -19,11 +20,11 @@ public class ConsumerServiceImpl implements ConsumerService {
         this.consumerMapper = consumerMapper;
         this.modelMapperV2 = modelMapperV2;
     }
-    private Mono<Boolean> saveValidate(CreateConsumerDto createConsumerDto){
+    private Mono<Boolean> createValidate(CreateConsumerDto createConsumerDto){
         return Mono.zip(
                 consumerRepository.existsByIdentity(createConsumerDto.getIdentity()),
                 consumerRepository.existsByEmail(createConsumerDto.getEmail())
-        ).map(tuple -> {
+        ).flatMap(tuple -> {
             boolean identityExist = tuple.getT1();
             boolean emailExist = tuple.getT2();
             if (identityExist) {
@@ -32,13 +33,13 @@ public class ConsumerServiceImpl implements ConsumerService {
             if (emailExist) {
                 return Mono.error(new IllegalArgumentException("Email already exists"));
             }
-            return true;
-        }).switchIfEmpty(Mono.just(true)).hasElement();
+            return Mono.just(true);
+        });
     }
     @Override
-    public Mono<Consumer> create(Mono<CreateConsumerDto> createConsumerDto) {
-        return createConsumerDto
-                .map(consumerMapper::convertToConsumer)
+    public Mono<Consumer> create(CreateConsumerDto createConsumerDto) {
+        return createValidate(createConsumerDto)
+                .map(x -> consumerMapper.convertToConsumer(createConsumerDto))
                 .flatMap(consumerRepository::save);
     }
 

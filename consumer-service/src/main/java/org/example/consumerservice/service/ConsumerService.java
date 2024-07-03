@@ -5,7 +5,7 @@ import org.example.consumerservice.entity.Consumer;
 import reactor.core.publisher.Mono;
 
 public interface ConsumerService {
-    Mono<Consumer> create(Mono<CreateConsumerDto> createConsumerDto);
+    Mono<Consumer> create(CreateConsumerDto createConsumerDto);
     Mono<Consumer> getConsumerById(Long id);
     Mono<Consumer> updateConsumerById(Long id, CreateConsumerDto updateConsumerDto);
 }

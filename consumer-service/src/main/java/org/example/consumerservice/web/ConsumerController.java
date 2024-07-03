@@ -15,7 +15,7 @@ public class ConsumerController {
     }
     @PostMapping
     Mono<Consumer> create(@RequestBody CreateConsumerDto createConsumerDto){
-        return consumerService.create(Mono.just(createConsumerDto));
+        return consumerService.create(createConsumerDto);
     }
     @GetMapping("/{id}")
     Mono<Consumer> getConsumerById(@PathVariable("id") Long id){
