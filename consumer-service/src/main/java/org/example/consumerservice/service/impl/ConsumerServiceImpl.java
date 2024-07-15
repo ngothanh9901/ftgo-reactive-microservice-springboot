@@ -39,6 +39,7 @@ public class ConsumerServiceImpl implements ConsumerService {
     @Override
     public Mono<Consumer> create(CreateConsumerDto createConsumerDto) {
         return createValidate(createConsumerDto)
+                .onErrorResume(e -> Mono.error(new IllegalArgumentException(e.getMessage())))
                 .map(x -> consumerMapper.convertToConsumer(createConsumerDto))
                 .flatMap(consumerRepository::save);
     }
