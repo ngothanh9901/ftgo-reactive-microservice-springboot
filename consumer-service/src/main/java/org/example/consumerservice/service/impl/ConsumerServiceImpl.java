@@ -46,7 +46,8 @@ public class ConsumerServiceImpl implements ConsumerService {
 
     @Override
     public Mono<Consumer> getConsumerById(Long id) {
-        return consumerRepository.findById(id);
+        return consumerRepository.findById(id)
+                .switchIfEmpty(Mono.error(new IllegalArgumentException("The Consumer doesn't exist")));
     }
 
     @Override
